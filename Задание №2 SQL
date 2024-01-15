@@ -1,0 +1,8 @@
+SELECT track,
+CASE
+WHEN finished=true THEN 'Status 2'
+WHEN cancelled=true THEN 'Status -1'
+WHEN "inDelivery"=true THEN 'Status 1'
+ELSE 'Status 0'
+END
+FROM "Orders";

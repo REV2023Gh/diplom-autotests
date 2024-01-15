@@ -1,0 +1,4 @@
+SELECT c.login, COUNT(o."inDelivery") AS "COUNT inDelivery"
+FROM "Couriers" AS c
+INNER JOIN "Orders" AS o ON c.id=o."courierId"
+GROUP BY login;
