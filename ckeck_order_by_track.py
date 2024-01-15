@@ -7,15 +7,15 @@ import configuration
 
 #Автотест получение заказа по номеру.
 def test_get_order_by_track():
-    track_number = sender_stand_request.get_track_number()
-    new_params = f'{track_number}'
-    requests.get(configuration.URL_SERVICE + configuration.GET_ORDER_BY_TRACK, params=new_params)
+    response = sender_stand_request.post_new_order(data.order_body)
+    track_number = response.json().get('track')
+    print('Номер заказа:', track_number)
 
-    order_response = test_get_order_by_track()
-    assert order_response.status_code == 200, f"Ошибка {order_response.status.code}"
+    order_response = sender_stand_request.get_order_by_track(track_number)
+
+    assert order_response.status_code == 200, f'Ошибка {order_response.status.code}'
     order = order_response.json()
-    print(order)
-
+    print('Ваш заказ', order)
 
 
 
