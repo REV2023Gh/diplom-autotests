@@ -7,8 +7,7 @@ import configuration
 
 #Автотест получение заказа по номеру.
 def test_get_order_by_track():
-    response = sender_stand_request.post_new_order(data.order_body)
-    track_number = response.json().get('track')
+    track_number = sender_stand_request.get_track_number().get('track')
     print('Номер заказа:', track_number)
 
     order_response = sender_stand_request.get_order_by_track(track_number)
